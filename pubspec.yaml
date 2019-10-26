@@ -29,7 +29,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   video_player: ^0.10.1+6
-  audioplayer: ^0.5.2
   path_provider:
   http:
 
@@ -49,6 +48,7 @@ flutter:
   assets:
    - lib/routers/
    - lib/assets/
+   - lib/helpers/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

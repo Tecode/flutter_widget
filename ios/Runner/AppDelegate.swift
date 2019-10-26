@@ -26,6 +26,7 @@ enum MyFlutterErrorCode {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
+//    SwiftAudioplayerPlugin.register(with: FlutterPluginRegistrar)
     guard let controller = window?.rootViewController as? FlutterViewController else {
       fatalError("rootViewController is not type FlutterViewController")
     }

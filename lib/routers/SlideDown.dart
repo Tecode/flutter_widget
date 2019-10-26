@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget/helpers/flutter_toast.dart';
 
 class SlideDown extends StatefulWidget {
   const SlideDown();
@@ -37,6 +38,7 @@ class _SlideDownState extends State<SlideDown> with TickerProviderStateMixin {
         title: IconButton(
           icon: Icon(Icons.adjust),
           onPressed: () {
+            FlutterToast.showToast('msg');
             if (_visible) {
               this.setState(() {
                 _visible = false;

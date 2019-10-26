@@ -1,16 +1,34 @@
-# flutter_widget
+<h1 align="center">Flutter 小案例（flutter_widget）</h1>
 
-A new Flutter project.
+## 视频背景登录（IOS播放请使用真机调试）
 
-## Getting Started
+<p align="center">
+    <img width="375" title="Flutter" src="./picture/login_video_demo.gif">
+</p>
 
-This project is a starting point for a Flutter application.
+## 仿马蜂窝自适应高度轮播图
 
-A few resources to get you started if this is your first Flutter project:
+<p align="center">
+    <img width="375" title="Flutter" src="./picture/auto_height_carousel.gif">
+</p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 错误信息
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 打包IOS程序报错
+
+```bash
+Warning: CocoaPods installed but not initialized. Skipping pod install.
+  CocoaPods is used to retrieve the iOS and macOS platform side's plugin code that responds to your plugin usage on the Dart side.
+  Without CocoaPods, plugins will not work on iOS or macOS.
+  For more info, see https://flutter.dev/platform-plugins
+To initialize CocoaPods, run:
+  pod setup
+once to finalize CocoaPods' installation.
+```
+
+### 运行`pod setup`
+
+```bash
+pod setup
+```
+

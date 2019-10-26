@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:audioplayer/audioplayer.dart';
+import 'package:flutter_widget/helpers/audio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -10,9 +10,9 @@ import 'package:path_provider/path_provider.dart';
 typedef void OnError(Exception exception);
 
 const kUrl =
-    "http://182.140.219.19/amobile.music.tc.qq.com/C400001txMXV1ZjiqD.m4a?guid=1174783312&vkey=20C892D89B25761D272F5084B6F9671594E6E478990A9ACDEADB7C32644D0546FA1A7AD82D756CC9660C382C4D3A1ED68C06E9F2E57E2CF9&uin=0&fromtag=66";
+    "http://aod.tx.xmcdn.com/group63/M04/B0/63/wKgMaF0AjEqzchhcAHOQyw-MaWs694.m4a";
 const kUrl2 =
-    "http://182.140.219.19/amobile.music.tc.qq.com/C400003zgoRj1o8d08.m4a?guid=1174783312&vkey=B998C855202D807DBBA123FCCD149CE46A936877889D2056D31F82B612537D7960D7D353B2940D97B54F43839D90E0AE2C7BC1C41168DB38&uin=0&fromtag=66";
+    "http://aod.tx.xmcdn.com/group58/M05/07/2C/wKgLc12dkrrDYlynANlq0D3kVYM472.m4a";
 
 void main() {
   runApp(MaterialApp(home: Scaffold(body: AudioApp())));
