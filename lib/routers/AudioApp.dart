@@ -1,24 +1,12 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:flutter_widget/helpers/audio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-typedef void OnError(Exception exception);
-
-const kUrl =
-    "http://aod.tx.xmcdn.com/group63/M04/B0/63/wKgMaF0AjEqzchhcAHOQyw-MaWs694.m4a";
-const kUrl2 =
-    "http://aod.tx.xmcdn.com/group58/M05/07/2C/wKgLc12dkrrDYlynANlq0D3kVYM472.m4a";
-
-void main() {
-  runApp(MaterialApp(home: Scaffold(body: AudioApp())));
+enum Status {
+  playing,
+  end,
+  loading,
+  pause,
 }
-
-enum PlayerState { stopped, playing, paused }
 
 class AudioApp extends StatefulWidget {
   const AudioApp();
@@ -27,238 +15,195 @@ class AudioApp extends StatefulWidget {
 }
 
 class _AudioAppState extends State<AudioApp> {
-  Duration duration;
-  Duration position;
+  AudioPlayer audioPlayer = AudioPlayer();
+  int _current = 0;
+  Status _status = Status.pause;
 
-  AudioPlayer audioPlayer;
-
-  String localFilePath;
-
-  PlayerState playerState = PlayerState.stopped;
-
-  get isPlaying => playerState == PlayerState.playing;
-  get isPaused => playerState == PlayerState.paused;
-
-  get durationText =>
-      duration != null ? duration.toString().split('.').first : '';
-  get positionText =>
-      position != null ? position.toString().split('.').first : '';
-
-  bool isMuted = false;
-
-  StreamSubscription _positionSubscription;
-  StreamSubscription _audioPlayerStateSubscription;
+  final List<Map<String, String>> _audioList = [
+    {
+      'title': '父母心学',
+      'value':
+          'https://video-cdn.naoxuejia.com/351c8912-fbfb-46d9-863d-c3e40e30b283.audio.m3u8?pm3u8/1143200&e=1572086524&token=6HXdYoPQFVMGnhmW45qWU3OvndEZz0h5aJF_y1qy:X7tI3vdLZV0_3WphIDxGgr833pQ='
+    },
+    {
+      'title': '郭德纲、于谦相声',
+      'value':
+          'https://audio.cos.xmcdn.com/group58/M05/07/2C/wKgLc12dkrrDYlynANlq0D3kVYM472.m4a',
+    },
+    {
+      'title': '糗事播报',
+      'value':
+          'https://audio.cos.xmcdn.com/group67/M07/B5/E7/wKgMd12ytQzD1bGVAJwaOgjqlMo860.m4a',
+    },
+    {
+      'title': '佛典小故事',
+      'value':
+          'http://aod.tx.xmcdn.com/group58/M01/1C/7D/wKgLgl2hmFTTva2tACzonXRJX5w933.m4a',
+    },
+    {
+      'title': '习近平新时代中国特色社会主义思想学习纲要',
+      'value':
+          'http://audio.xmcdn.com/group63/M04/B0/63/wKgMaF0AjEqzchhcAHOQyw-MaWs694.m4a',
+    },
+    {
+      'title': '小沈龙脱口秀',
+      'value':
+          'https://aod.tx.xmcdn.com/group67/M07/C7/82/wKgMd12z5wfw60O3AFf8jyP9Qso348.m4a',
+    },
+    {
+      'title': '365读书|精选美文',
+      'value':
+          'https://aod.tx.xmcdn.com/group67/M02/A0/EB/wKgMd12xckfTAx5KAE-YPhNfLro926.m4a',
+    },
+  ];
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    initAudioPlayer();
+    play();
+    audioPlayer.setNotification(
+      albumTitle: '《父母心学》公开课-高考的真相',
+      artist: '蜜糖男孩',
+      imageUrl: 'https://qpic.y.qq.com/music_cover/X52mdv6vsP6HbocN3ajjkQIoUEP69XSwf7Faedy1QPqpnl0qmG9t1A/300?n=1',
+      duration: Duration(microseconds: 5304)
+    );
+    audioPlayer.onPlayerStateChanged.listen((AudioPlayerState s) {
+      print('Current player state: $s');
+      // setState(() => playerState = s);
+    });
   }
 
   @override
   void dispose() {
-    _positionSubscription.cancel();
-    _audioPlayerStateSubscription.cancel();
-    audioPlayer.stop();
+    // TODO: implement dispose
     super.dispose();
+    audioPlayer.dispose();
   }
 
-  void initAudioPlayer() {
-    audioPlayer = AudioPlayer();
-    _positionSubscription = audioPlayer.onAudioPositionChanged
-        .listen((p) => setState(() => position = p));
-    _audioPlayerStateSubscription =
-        audioPlayer.onPlayerStateChanged.listen((s) {
-      if (s == AudioPlayerState.PLAYING) {
-        setState(() => duration = audioPlayer.duration);
-      } else if (s == AudioPlayerState.STOPPED) {
-        onComplete();
+  play() async {
+    int result = await audioPlayer.play(_audioList[_current]['value']);
+    if (result == 1) {
+      print('播放成功');
+      setState(() {
+        _status = Status.playing;
+      });
+      // success
+    }
+  }
+
+  void _togglePlay() async {
+    if (_status == Status.pause) {
+      int result = await audioPlayer.resume();
+      if (result == 1) {
         setState(() {
-          position = duration;
+          _status = Status.playing;
         });
       }
-    }, onError: (msg) {
-      setState(() {
-        playerState = PlayerState.stopped;
-        duration = Duration(seconds: 0);
-        position = Duration(seconds: 0);
-      });
-    });
-  }
-
-  Future play(String url) async {
-    await audioPlayer.play(url);
-    setState(() {
-      playerState = PlayerState.playing;
-    });
-  }
-
-  Future _playLocal() async {
-    await audioPlayer.play(localFilePath, isLocal: true);
-    setState(() => playerState = PlayerState.playing);
-  }
-
-  Future pause() async {
-    await audioPlayer.pause();
-    setState(() => playerState = PlayerState.paused);
-  }
-
-  Future stop() async {
-    await audioPlayer.stop();
-    setState(() {
-      playerState = PlayerState.stopped;
-      position = Duration();
-    });
-  }
-
-  Future mute(bool muted) async {
-    await audioPlayer.mute(muted);
-    setState(() {
-      isMuted = muted;
-    });
-  }
-
-  void onComplete() {
-    print('播放结束');
-    setState(() => playerState = PlayerState.stopped);
-    // 播放结束以后播放下一首
-    play(kUrl2);
-  }
-
-  Future<Uint8List> _loadFileBytes(String url, {OnError onError}) async {
-    Uint8List bytes;
-    try {
-      bytes = await readBytes(url);
-    } on ClientException {
-      rethrow;
+      return;
     }
-    return bytes;
-  }
-
-  Future _loadFile() async {
-    final bytes = await _loadFileBytes(kUrl,
-        onError: (Exception exception) =>
-            print('_loadFile => exception $exception'));
-
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/audio.mp3');
-
-    await file.writeAsBytes(bytes);
-    if (await file.exists())
-      setState(() {
-        localFilePath = file.path;
-      });
+    if (_status == Status.playing) {
+      int result = await audioPlayer.pause();
+      if (result == 1) {
+        setState(() {
+          _status = Status.pause;
+        });
+      }
+      return;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Material(
-            elevation: 2.0,
-            color: Colors.grey[200],
-            child: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Material(child: _buildPlayer()),
-                    localFilePath != null ? Text(localFilePath) : Container(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            RaisedButton(
-                              onPressed: () => _loadFile(),
-                              child: Text('下载'),
-                            ),
-                            RaisedButton(
-                              onPressed: () => _playLocal(),
-                              child: Text('本地播放'),
-                            ),
-                          ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            RaisedButton(
-                              onPressed: () => play(kUrl),
-                              child: Text('上一首'),
-                            ),
-                            RaisedButton(
-                              onPressed: () => play(kUrl2),
-                              child: Text('下一首'),
-                            ),
-                          ]),
-                    )
-                  ]),
-            )));
-  }
-
-  Widget _buildPlayer() => Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Row(mainAxisSize: MainAxisSize.min, children: [
-          IconButton(
-              onPressed: isPlaying ? null : () => play(kUrl),
-              iconSize: 64.0,
-              icon: Icon(Icons.play_arrow),
-              color: Colors.cyan),
-          IconButton(
-              onPressed: isPlaying ? () => pause() : null,
-              iconSize: 64.0,
-              icon: Icon(Icons.pause),
-              color: Colors.cyan),
-          IconButton(
-              onPressed: isPlaying || isPaused ? () => stop() : null,
-              iconSize: 64.0,
-              icon: Icon(Icons.stop),
-              color: Colors.cyan),
-        ]),
-        duration == null
-            ? Container()
-            : Slider(
-                value: position?.inMilliseconds?.toDouble() ?? 0.0,
-                onChanged: (double value) =>
-                    audioPlayer.seek((value / 1000).roundToDouble()),
-                min: 0.0,
-                max: duration.inMilliseconds.toDouble()),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-                onPressed: () => mute(true),
-                icon: Icon(Icons.headset_off),
-                color: Colors.cyan),
-            IconButton(
-                onPressed: () => mute(false),
-                icon: Icon(Icons.headset),
-                color: Colors.cyan),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '${_audioList[_current]['title']}',
         ),
-        Row(mainAxisSize: MainAxisSize.min, children: [
-          Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Stack(children: [
-                CircularProgressIndicator(
-                    value: 1.0,
-                    valueColor: AlwaysStoppedAnimation(Colors.grey[300])),
-                CircularProgressIndicator(
-                  value: position != null && position.inMilliseconds > 0
-                      ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
-                          (duration?.inMilliseconds?.toDouble() ?? 0.0)
-                      : 0.0,
-                  valueColor: AlwaysStoppedAnimation(Colors.cyan),
-                  backgroundColor: Colors.yellow,
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: 200,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 100.0,
+                  child: Align(
+                    child: Text(
+                      '正在播放：${_audioList[_current]['title']}',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ),
-              ])),
-          Text(
-              position != null
-                  ? "${positionText ?? ''} / ${durationText ?? ''}"
-                  : duration != null ? durationText : '',
-              style: TextStyle(fontSize: 24.0))
-        ])
-      ]));
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      height: 40.0,
+                      color: Color(0xffededed),
+                      child: FlatButton(
+                        onPressed: () {},
+                        child: Text('上一首'),
+                      ),
+                    ),
+                    Container(
+                      height: 40.0,
+                      color: Color(0xffededed),
+                      child: FlatButton(
+                        onPressed: _togglePlay,
+                        child: Text('${_status == Status.pause ? '播放' : '暂停'}'),
+                      ),
+                    ),
+                    Container(
+                      height: 40.0,
+                      color: Color(0xffededed),
+                      child: FlatButton(
+                        onPressed: () {},
+                        child: Text('下一首'),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  margin: EdgeInsets.only(top: 5.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xffdedede),
+                  ),
+                  child: FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                    child: SizedBox(
+                      height: 60.0,
+                      child: Align(
+                        child: Text(
+                          '${_audioList[index]['title']}',
+                          style: TextStyle(fontSize: 16.0, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: _audioList.length,
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
