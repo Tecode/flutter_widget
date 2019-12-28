@@ -6,6 +6,7 @@ import 'package:flutter_widget/routers/SlideDown.dart';
 import 'package:flutter_widget/routers/TabBarFixed.dart';
 import 'package:flutter_widget/routers/StickTab.dart';
 import 'package:flutter_widget/routers/PlatformChannel.dart';
+import 'package:flutter_widget/routers/Animationted.dart';
 
 class FlutterApp extends StatelessWidget {
   @override
@@ -96,6 +97,17 @@ class FlutterApp extends StatelessWidget {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PlatformChannel()));
+              },
+            ),
+            ListTile(
+              title: Text("动画"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Animationted()));
               },
             ),
           ],

@@ -20,40 +20,14 @@ class _AudioAppState extends State<AudioApp> {
   Status _status = Status.pause;
 
   final List<Map<String, String>> _audioList = [
-    {
-      'title': '父母心学',
-      'value':
-          'https://video-cdn.naoxuejia.com/351c8912-fbfb-46d9-863d-c3e40e30b283.audio.m3u8?pm3u8/1143200&e=1572086524&token=6HXdYoPQFVMGnhmW45qWU3OvndEZz0h5aJF_y1qy:X7tI3vdLZV0_3WphIDxGgr833pQ='
-    },
+    {'title': '父母心学', 'value': 'http://mp3.9ku.com/m4a/637791.m4a'},
     {
       'title': '郭德纲、于谦相声',
-      'value':
-          'https://audio.cos.xmcdn.com/group58/M05/07/2C/wKgLc12dkrrDYlynANlq0D3kVYM472.m4a',
+      'value': 'http://mp3.9ku.com/m4a/473290.m4a',
     },
     {
       'title': '糗事播报',
-      'value':
-          'https://audio.cos.xmcdn.com/group67/M07/B5/E7/wKgMd12ytQzD1bGVAJwaOgjqlMo860.m4a',
-    },
-    {
-      'title': '佛典小故事',
-      'value':
-          'http://aod.tx.xmcdn.com/group58/M01/1C/7D/wKgLgl2hmFTTva2tACzonXRJX5w933.m4a',
-    },
-    {
-      'title': '习近平新时代中国特色社会主义思想学习纲要',
-      'value':
-          'http://audio.xmcdn.com/group63/M04/B0/63/wKgMaF0AjEqzchhcAHOQyw-MaWs694.m4a',
-    },
-    {
-      'title': '小沈龙脱口秀',
-      'value':
-          'https://aod.tx.xmcdn.com/group67/M07/C7/82/wKgMd12z5wfw60O3AFf8jyP9Qso348.m4a',
-    },
-    {
-      'title': '365读书|精选美文',
-      'value':
-          'https://aod.tx.xmcdn.com/group67/M02/A0/EB/wKgMd12xckfTAx5KAE-YPhNfLro926.m4a',
+      'value': 'http://mp3.9ku.com/hot/2004/07-13/12971.mp3',
     },
   ];
 
@@ -63,11 +37,11 @@ class _AudioAppState extends State<AudioApp> {
     super.initState();
     play();
     audioPlayer.setNotification(
-      albumTitle: '《父母心学》公开课-高考的真相',
-      artist: '蜜糖男孩',
-      imageUrl: 'https://qpic.y.qq.com/music_cover/X52mdv6vsP6HbocN3ajjkQIoUEP69XSwf7Faedy1QPqpnl0qmG9t1A/300?n=1',
-      duration: Duration(microseconds: 5304)
-    );
+        albumTitle: '《父母心学》公开课-高考的真相',
+        artist: '蜜糖男孩',
+        imageUrl:
+            'https://qpic.y.qq.com/music_cover/X52mdv6vsP6HbocN3ajjkQIoUEP69XSwf7Faedy1QPqpnl0qmG9t1A/300?n=1',
+        duration: Duration(microseconds: 5304));
     audioPlayer.onPlayerStateChanged.listen((AudioPlayerState s) {
       print('Current player state: $s');
       // setState(() => playerState = s);
@@ -82,7 +56,8 @@ class _AudioAppState extends State<AudioApp> {
   }
 
   play() async {
-    int result = await audioPlayer.play(_audioList[_current]['value']);
+    int result = await audioPlayer.play(
+        'https://video-cdn.naoxuejia.com/2b9dc617-f9ef-47a4-978d-440af0ed8db3.audio.m3u8?pm3u8/1143200&e=1576221632&token=6HXdYoPQFVMGnhmW45qWU3OvndEZz0h5aJF_y1qy:4irLs6Y0l5C-cQ0NtG--hHz-C_8=');
     if (result == 1) {
       print('播放成功');
       setState(() {
@@ -148,7 +123,14 @@ class _AudioAppState extends State<AudioApp> {
                       height: 40.0,
                       color: Color(0xffededed),
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          audioPlayer.setNotification(
+                              albumTitle: 'TEST《父母心学》公开课-高考的真相',
+                              artist: '蜜糖男孩',
+                              imageUrl:
+                                  'https://qpic.y.qq.com/music_cover/X52mdv6vsP6HbocN3ajjkQIoUEP69XSwf7Faedy1QPqpnl0qmG9t1A/300?n=1',
+                              duration: Duration(microseconds: 5304));
+                        },
                         child: Text('上一首'),
                       ),
                     ),
