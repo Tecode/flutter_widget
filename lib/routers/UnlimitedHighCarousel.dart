@@ -88,7 +88,7 @@ class _UnlimitedHighCarouselState extends State<UnlimitedHighCarousel> {
                     controller: _controller,
                     children: pictrueList
                         .map((PictrueData data) => FadeInImage.assetNetwork(
-                              placeholder: "lib/assets/loading_img.gif",
+                              placeholder: "assets/loading_img.gif",
                               image: data.url,
                               fit: BoxFit.cover,
                               alignment: Alignment.center,

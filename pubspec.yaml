@@ -32,9 +32,7 @@ dev_dependencies:
   video_player: ^0.10.1+6
   path_provider:
   http:
-  # audioplayers: ^0.13.2
-  audioplayers: 
-    path: /Users/aming/testFile/audioplayers
+  audioplayers: ^0.13.2
 
 
 # For information on the generic Dart part of this file, see the
@@ -50,9 +48,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - lib/routers/
-   - lib/assets/
-   - lib/helpers/
+   - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

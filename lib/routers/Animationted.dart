@@ -1,3 +1,6 @@
+import 'package:flare_dart/math/mat2d.dart';
+import 'package:flare_flutter/flare.dart';
+import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import "package:flare_flutter/flare_actor.dart";
 import "package:flare_flutter/flare_cache_builder.dart";
@@ -8,7 +11,7 @@ class Animationted extends StatefulWidget {
 }
 
 class _AnimationtedState extends State<Animationted> {
-  String _animationName = "animation";
+  String _animationName = "idle";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +19,14 @@ class _AnimationtedState extends State<Animationted> {
         title: Text('动画'),
       ),
       body: FlareCacheBuilder(
-        ["assets/animation.flr"],
+        ["assets/Filip.flr"],
         builder: (BuildContext context, bool isWarm) {
           return !isWarm
               ? Container(child: Text("NO"))
               : FlareActor(
-                  "assets/animation.flr",
+                  "assets/Filip.flr",
                   alignment: Alignment.center,
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                   animation: _animationName,
                 );
         },

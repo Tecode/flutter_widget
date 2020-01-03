@@ -11,10 +11,10 @@ packages:
   audioplayers:
     dependency: "direct dev"
     description:
-      path: "/Users/aming/testFile/audioplayers"
-      relative: false
-    source: path
-    version: "0.13.2"
+      name: audioplayers
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.13.6"
   boolean_selector:
     dependency: transitive
     description:
