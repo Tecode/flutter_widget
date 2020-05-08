@@ -1,5 +1,15 @@
 <h1 align="center">Flutter 小案例（flutter_widget）</h1>
 
+## Flutter版本
+
+```dart
+Flutter 1.12.13+hotfix.9 • channel unknown • unknown source
+Framework • revision f139b11009 (5 weeks ago) • 2020-03-30 13:57:30 -0700
+Engine • revision af51afceb8
+Tools • Dart 2.7.2
+
+```
+
 ## 视频背景登录（IOS播放请使用真机调试）
 
 <p align="center">
