@@ -1,5 +1,11 @@
 <h1 align="center">Flutter 小案例（flutter_widget）</h1>
 
+## 扫码下载
+<p align="center">
+    <img width="200" title="Flutter" src="./picture/QRCode_258.png">
+</p>
+<h2 align="center">安装密码：123456</h2>
+
 ## Flutter版本
 
 ```dart
