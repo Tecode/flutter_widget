@@ -22,6 +22,11 @@ Tools • Dart 2.7.2
     <img width="375" title="Flutter" src="./picture/auto_height_carousel.gif">
 </p>
 
+## 自定义滑动（类似开言英语轮播图）
+<p align="center">
+    <img width="375" title="Flutter" src="./picture/swipe.gif">
+</p>
+
 ## 错误信息
 
 ### 打包IOS程序报错

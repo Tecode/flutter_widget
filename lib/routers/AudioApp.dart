@@ -33,7 +33,6 @@ class _AudioAppState extends State<AudioApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     play();
     audioPlayer.setNotification(
@@ -50,7 +49,6 @@ class _AudioAppState extends State<AudioApp> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     audioPlayer.dispose();
   }

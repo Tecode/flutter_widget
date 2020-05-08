@@ -4,12 +4,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:ui' as ui;
 
-/**
- * 自定义的TabBar
- * 因为原生的tabbar无法改变宽高，因此无法自定义
- * 这里是自定义的，实现了PreferredSizeWidget，因为在AppBar的bottom属性里，只支持PreferredSizeWidget这样的widget
- * 同时是此控件还能设置padding
- */
+///**
+// * 自定义的TabBar
+// * 因为原生的tabbar无法改变宽高，因此无法自定义
+// * 这里是自定义的，实现了PreferredSizeWidget，因为在AppBar的bottom属性里，只支持PreferredSizeWidget这样的widget
+// * 同时是此控件还能设置padding
+// */
 class TabContainer extends StatelessWidget implements PreferredSizeWidget {
   /// Creates a widget that combines common painting, positioning, and sizing widgets.
   ///
@@ -53,7 +53,7 @@ class TabContainer extends StatelessWidget implements PreferredSizeWidget {
   double width;
 
   /// If non-null, requires the child to have exactly this height.
-  double height;
+  final double height;
 
   /// The [child] contained by the container.
   ///

@@ -102,7 +102,6 @@ class AudioPlayer {
         // If there's an error, we assume the player has stopped.
         _state = AudioPlayerState.STOPPED;
         _playerStateController.addError(call.arguments);
-        // TODO: Handle error arguments here. It is not useful to pass this
         // to the client since each platform creates different error string
         // formats so we can't expect client to parse these.
         break;

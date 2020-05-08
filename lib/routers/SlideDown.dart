@@ -19,7 +19,6 @@ class _SlideDownState extends State<SlideDown> with TickerProviderStateMixin {
   CurvedAnimation _curve;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _animation = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));

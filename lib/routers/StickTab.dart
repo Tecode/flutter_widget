@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget/widgets/stick_widget.dart';
 
 class StickTab extends StatefulWidget {
   @override
@@ -11,16 +10,10 @@ class _StickTabState extends State<StickTab> {
     '语文',
     '英语',
   ];
-  TabController _controller;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _controller = TabController(
-      length: _allPages.length,
-      vsync: ScrollableState(),
-    );
   }
 
   @override

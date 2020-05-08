@@ -17,7 +17,6 @@ class _LoginVideoState extends State<LoginVideo> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = VideoPlayerController.network(videoUrl)
       ..initialize().then((_) {
@@ -33,7 +32,6 @@ class _LoginVideoState extends State<LoginVideo> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.pause();
   }

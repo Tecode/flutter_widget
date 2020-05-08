@@ -1,4 +1,3 @@
-import 'package:flare_flutter/asset_provider.dart';
 import 'package:flare_flutter/provider/asset_flare.dart';
 import 'package:flutter/material.dart';
 import "package:flare_flutter/flare_actor.dart";

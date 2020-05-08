@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget/routers/LoginVideo.dart';
+import 'package:flutter_widget/routers/Swiper.dart';
 import 'package:flutter_widget/routers/UnlimitedHighCarousel.dart';
 import 'package:flutter_widget/routers/AudioApp.dart';
 import 'package:flutter_widget/routers/SlideDown.dart';
@@ -108,6 +109,17 @@ class FlutterApp extends StatelessWidget {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Animationted()));
+              },
+            ),
+            ListTile(
+              title: Text("Swipe"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Swipe()));
               },
             ),
           ],
