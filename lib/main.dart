@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
               if (snapshot.hasData) {
                 return new Text(
                   '${snapshot.data.width}x${snapshot.data.height}',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.body2,
                 );
               } else {
                 return new Text('Loading...');
