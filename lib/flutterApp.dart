@@ -125,7 +125,7 @@ class FlutterApp extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text("透明变色导航"),
+              title: Text("滑动变色导航"),
               trailing: Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.black,
