@@ -19,7 +19,7 @@ class FlutterApp extends StatelessWidget {
       child: Container(
         color: Color(0xfffafafa),
         padding: EdgeInsets.only(top: 28.0),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             ListTile(
               title: Text("视频背景登录"),

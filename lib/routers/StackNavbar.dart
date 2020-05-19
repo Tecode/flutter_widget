@@ -52,37 +52,13 @@ class _StackNavbarState extends State<StackNavbar>
           height: double.infinity,
           child: Stack(
             children: <Widget>[
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 150,
-                      color:
-                          Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
-                              .withOpacity(1),
-                      width: 250,
-                    ),
-                    Container(
-                      height: 150,
-                      color: Colors.pink,
-                      width: 250,
-                    ),
-                    Container(
-                      height: 150,
-                      color: Colors.deepOrange,
-                      width: 250,
-                    ),
-                    Container(
-                      height: 150,
-                      color: Colors.red,
-                      width: 250,
-                    ),
-                    Container(
-                      height: 150,
-                      color: Colors.white70,
-                      width: 250,
-                    ),
-                  ],
+              ListView.builder(
+                itemCount: 100,
+                itemBuilder: (BuildContext context, int index) => Container(
+                  height: 150,
+                  color: Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
+                      .withOpacity(1),
+                  width: 250,
                 ),
               ),
               Container(
