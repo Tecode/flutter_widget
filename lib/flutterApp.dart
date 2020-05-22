@@ -126,7 +126,7 @@ class FlutterApp extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text("滑动变色导航"),
+              title: Text("滑动导航变色"),
               trailing: Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.black,
@@ -137,7 +137,7 @@ class FlutterApp extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text("吸顶导航"),
+              title: Text("滑动隐藏导航"),
               trailing: Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.black,

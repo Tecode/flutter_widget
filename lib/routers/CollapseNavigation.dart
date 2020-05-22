@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CollapseNavigation extends StatefulWidget {
   CollapseNavigation({Key key}) : super(key: key);
@@ -12,62 +13,66 @@ class CollapseNavigation extends StatefulWidget {
 class _CollapseNavigationState extends State<CollapseNavigation> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        // Background(image: 'assets/images/fondo_horario.webp'),
-        Container(
-          color: Colors.black.withOpacity(.3),
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          body: CustomScrollView(
-            slivers: <Widget>[
-              SliverAppBar(
-                elevation: 0,
-                floating: true,
-                snap: true,
-                backgroundColor: Colors.transparent,
-                actions: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.more_vert),
-                    onPressed: () {},
-                  ),
-                ],
-                title: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "HORARIO DE CURSOS DEL CICLO 2019B",
-                        style:
-                            TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "TOTAL DE CRÉDITOS: 52",
-                        style:
-                            TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black87),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              elevation: 0,
+              floating: true,
+              snap: true,
+              backgroundColor: Colors.white,
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.more_vert, color: Colors.black87),
+                  onPressed: () {},
+                ),
+              ],
+              title: Container(
+                height: 30.0,
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                decoration: BoxDecoration(
+                    color: Color(0xffededed),
+                    borderRadius: BorderRadius.circular(40.0)),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '搜索：Flutter 小组件',
+                    style: TextStyle(fontSize: 14.0, color: Colors.black38),
                   ),
                 ),
               ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: _SliverAppBarDelegate(
-                  minHeight: 60.0,
-                  maxHeight: 180.0,
-                  child: Container(),
-                ),
-              ),
-              // SliverToBoxAdapter(
-              //   child: Text('dara'),
-              // )
-            ],
-          ),
+            ),
+//            SliverPersistentHeader(
+//              pinned: true,
+//              delegate: _SliverAppBarDelegate(
+//                minHeight: 60.0,
+//                maxHeight: 180.0,
+//                child: ListView(
+//                  scrollDirection: Axis.horizontal,
+//                  children: [],
+//                ),
+//              ),
+//            ),
+            SliverFixedExtentList(
+                itemExtent: 100.0,
+                delegate: SliverChildListDelegate(
+                  List.generate(
+                    60,
+                    (int index) => ListTile(
+                        title:
+                            Text('Flutter ${(index + 10).toRadixString(2)}')),
+                  ).toList(),
+                )),
+          ],
         ),
-      ],
+      ),
     );
-    ;
   }
 }
 
