@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget/routers/AppLifecycleListen.dart';
 import 'package:flutter_widget/routers/CollapseNavigation.dart';
 import 'package:flutter_widget/routers/LoginVideo.dart';
 import 'package:flutter_widget/routers/StackNavbar.dart';
@@ -146,6 +147,19 @@ class FlutterApp extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => CollapseNavigation()));
+              },
+            ),
+            ListTile(
+              title: Text("App状态监听"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AppLifecycleListen()));
               },
             ),
           ],
