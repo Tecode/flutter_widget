@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AppLifecycleListen extends StatefulWidget {
   @override
   _AppLifecycleListenState createState() => _AppLifecycleListenState();
 }
 
-class _AppLifecycleListenState extends State<AppLifecycleListen> {
+class _AppLifecycleListenState extends State<AppLifecycleListen>
+    with WidgetsBindingObserver {
   List<String> _stateList = [];
   @override
   void initState() {
     super.initState();
-    SystemChannels.lifecycle.setMessageHandler((value) {
-      print(value);
-      setState(() {
-        _stateList.add(value);
-      });
-      return;
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      _stateList.add('$state');
     });
   }
 

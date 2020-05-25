@@ -29,7 +29,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  video_player: 0.10.1+6
+  video_player: 0.10.11+1
   path_provider:
   http:
   audioplayers: 0.15.1

@@ -11,6 +11,7 @@ import 'package:flutter_widget/routers/TabBarFixed.dart';
 import 'package:flutter_widget/routers/StickTab.dart';
 import 'package:flutter_widget/routers/PlatformChannel.dart';
 import 'package:flutter_widget/routers/Animationted.dart';
+import 'package:flutter_widget/routers/VideoPictureInPicture.dart';
 
 class FlutterApp extends StatelessWidget {
   @override
@@ -160,6 +161,19 @@ class FlutterApp extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => AppLifecycleListen()));
+              },
+            ),
+            ListTile(
+              title: Text("视频嵌套播放"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VideoPictureInPicture()));
               },
             ),
           ],
