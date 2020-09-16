@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget/routers/AppLifecycleListen.dart';
 import 'package:flutter_widget/routers/CollapseNavigation.dart';
 import 'package:flutter_widget/routers/LoginVideo.dart';
-import 'package:flutter_widget/routers/StackNavbar.dart';
+import 'package:flutter_widget/routers/StackNavBar.dart';
 import 'package:flutter_widget/routers/Swiper.dart';
 import 'package:flutter_widget/routers/UnlimitedHighCarousel.dart';
 import 'package:flutter_widget/routers/AudioApp.dart';
@@ -134,7 +134,7 @@ class FlutterApp extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => StackNavbar()));
+                    MaterialPageRoute(builder: (context) => StackNavBar()));
               },
             ),
             ListTile(

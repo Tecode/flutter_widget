@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class StackNavbar extends StatefulWidget {
+class StackNavBar extends StatefulWidget {
   @override
-  _StackNavbarState createState() => _StackNavbarState();
+  _StackStackNavBarState createState() => _StackStackNavBarState();
 }
 
-class _StackNavbarState extends State<StackNavbar>
+class _StackStackNavBarState extends State<StackNavBar>
     with TickerProviderStateMixin {
   AnimationController _colorAnimationController;
   AnimationController _textAnimationController;
@@ -32,7 +32,8 @@ class _StackNavbarState extends State<StackNavbar>
   }
 
   bool _scrollListener(ScrollNotification scrollInfo) {
-    if (scrollInfo.metrics.axis == Axis.vertical) {
+    if (scrollInfo.metrics.axis == Axis.vertical &&
+        scrollInfo.metrics.pixels < 600) {
       _colorAnimationController.animateTo(scrollInfo.metrics.pixels / 350);
 
       _textAnimationController
