@@ -35,7 +35,7 @@ class TabBarFixed extends StatelessWidget {
             return <Widget>[
               new SliverOverlapAbsorber(
                 handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                child: _buildSliverAppBar(context),
+                sliver: _buildSliverAppBar(context),
               ),
             ];
           },
@@ -149,7 +149,7 @@ class SliverObstructionInjector extends SliverOverlapInjector {
     @required SliverOverlapAbsorberHandle handle,
     Widget child,
   })  : assert(handle != null),
-        super(key: key, handle: handle, child: child);
+        super(key: key, handle: handle, sliver: child);
 
   @override
   RenderSliverObstructionInjector createRenderObject(BuildContext context) {

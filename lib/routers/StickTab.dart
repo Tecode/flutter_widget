@@ -28,7 +28,7 @@ class _StickTabState extends State<StickTab> {
               SliverOverlapAbsorber(
                 handle:
                     NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                child: SliverAppBar(
+                sliver: SliverAppBar(
                   title: const Text('Tabs and scrolling'),
                   actions: <Widget>[],
                   pinned: true,
