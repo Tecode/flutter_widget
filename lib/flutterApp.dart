@@ -12,6 +12,7 @@ import 'package:flutter_widget/routers/StickTab.dart';
 import 'package:flutter_widget/routers/PlatformChannel.dart';
 import 'package:flutter_widget/routers/Animationted.dart';
 import 'package:flutter_widget/routers/VideoPictureInPicture.dart';
+import 'package:flutter_widget/routers/carousel_zoom.dart';
 
 class FlutterApp extends StatelessWidget {
   @override
@@ -34,6 +35,19 @@ class FlutterApp extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const LoginVideo()));
+              },
+            ),
+            ListTile(
+              title: Text("具有缩放效果的轮播图"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CarouselZoom()));
               },
             ),
             ListTile(

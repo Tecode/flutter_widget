@@ -36,9 +36,7 @@ class _StickTabState extends State<StickTab> {
                   forceElevated: innerBoxIsScrolled,
                   bottom: TabBar(
                     tabs: _allPages
-                        .map<Widget>(
-                          (String value) => Tab(text: value),
-                        )
+                        .map<Widget>((String value) => Tab(text: value))
                         .toList(),
                   ),
                 ),
@@ -71,10 +69,11 @@ class _StickTabState extends State<StickTab> {
                             delegate: SliverChildBuilderDelegate(
                               (BuildContext context, int index) {
                                 return Padding(
+                                  key: ValueKey('1'),
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 8.0,
                                   ),
-                                  child: Text('data'),
+                                  child: Text('data $index'),
                                 );
                               },
                               childCount: 350,

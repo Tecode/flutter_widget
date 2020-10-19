@@ -55,6 +55,7 @@ class _StackStackNavBarState extends State<StackNavBar>
             children: <Widget>[
               ListView.builder(
                 itemCount: 100,
+                padding: EdgeInsets.zero,
                 itemBuilder: (BuildContext context, int index) => Container(
                   height: 150,
                   color: Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
