@@ -29,35 +29,40 @@ class _CarouselZoomState extends State<CarouselZoom>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: _Carousel(
         children: <Widget>[
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 300.0,
-            color: Colors.black12,
-            child: _Carousel(
-              children: <Widget>[
-                Container(
-                  color: Colors.green,
-                  width: MediaQuery.of(context).size.width - 60,
-                  height: 100.0,
-                  child: Text('data5'),
-                ),
-                Container(
-                  color: Colors.red,
-                  width: MediaQuery.of(context).size.width - 60,
-                  height: 100.0,
-                ),
-                Container(
-                  color: Colors.blue,
-                  width: MediaQuery.of(context).size.width - 60,
-                  height: 100.0,
-                ),
-              ],
-              animationController: _animationController,
-            ),
+            color: Colors.green,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
+          ),
+          Container(
+            color: Colors.red,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
+          ),
+          Container(
+            color: Colors.blue,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
+          ),
+          Container(
+            color: Colors.blue,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
+          ),
+          Container(
+            color: Colors.blue,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
+          ),
+          Container(
+            color: Colors.blue,
+            width: MediaQuery.of(context).size.width - 60,
+            height: 160.0,
           ),
         ],
+        animationController: _animationController,
       ),
     );
   }
@@ -225,7 +230,6 @@ class _AnimatedCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      print(_carouselHeight(.4, context));
       return AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
