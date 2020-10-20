@@ -158,47 +158,6 @@ class _CarouselState extends State<_Carousel>
   }
 }
 
-class _AnimatedCarouselCard extends StatelessWidget {
-  _AnimatedCarouselCard({
-    Key key,
-    @required this.child,
-    @required this.controller,
-  })  : startPaddingAnimation = Tween(
-          begin: _horizontalPadding,
-          end: 0.0,
-        ).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.900,
-              1.000,
-              curve: Curves.ease,
-            ),
-          ),
-        ),
-        super(key: key);
-
-  final Widget child;
-  final AnimationController controller;
-  final Animation<double> startPaddingAnimation;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) {
-        return Padding(
-          padding: EdgeInsetsDirectional.only(
-            start: startPaddingAnimation.value,
-          ),
-          child: child,
-        );
-      },
-      child: child,
-    );
-  }
-}
-
 double _carouselHeight(double scaleFactor, BuildContext context) => math.max(
     _carouselHeightMin * MediaQuery.of(context).textScaleFactor * scaleFactor,
     _carouselHeightMin);
