@@ -13,6 +13,7 @@ import 'package:flutter_widget/routers/PlatformChannel.dart';
 import 'package:flutter_widget/routers/Animationted.dart';
 import 'package:flutter_widget/routers/VideoPictureInPicture.dart';
 import 'package:flutter_widget/routers/carousel_zoom.dart';
+import 'package:flutter_widget/routers/fold_list.dart';
 
 class FlutterApp extends StatelessWidget {
   @override
@@ -188,6 +189,17 @@ class FlutterApp extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => VideoPictureInPicture()));
+              },
+            ),
+            ListTile(
+              title: Text("折叠列表"),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FoldList()));
               },
             ),
           ],
