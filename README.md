@@ -61,6 +61,15 @@ To initialize CocoaPods, run:
 once to finalize CocoaPods' installation.
 ```
 
+### M1芯片`Podfile`报架构问题
+
+```
+# M1芯片
+installer.pods_project.build_configurations.each do |config|
+  config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+end
+```
+
 ### 运行`pod setup`
 
 ```bash
