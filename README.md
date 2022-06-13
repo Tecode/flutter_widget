@@ -4,7 +4,6 @@
 <p align="center">
     <img width="200" title="Flutter" src="./picture/QRCode_258.png">
 </p>
-<h2 align="center">安装密码：123456</h2>
 
 ## Flutter版本（要注意版本比如1.20.4的版本跑iOS会报找不到引擎）
 
